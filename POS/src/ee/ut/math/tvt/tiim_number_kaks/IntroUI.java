@@ -64,6 +64,7 @@ public class IntroUI extends Application {
 		
 		primaryStage.setScene(new Scene(juur));
 		HBox box = new HBox();
+		box.setLayoutX(230);
         box.getChildren().add(iv1);
         juur.getChildren().add(box);        
 	    primaryStage.show();
