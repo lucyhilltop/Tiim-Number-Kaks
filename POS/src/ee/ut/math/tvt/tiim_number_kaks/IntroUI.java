@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -23,11 +26,9 @@ public class IntroUI extends Application {
 		Tiim.setCache(true);
         Tiim.setText("Tiim Number 2");
         
-        Image logo = new Image("ee.ut.math.tvt.tiim_number_kaks/number 2.png");
-        Rectangle kastl=new Rectangle(0, 400, 550, 125);
-		kastl.setFill(new ImagePattern(logo, 0, 0, 1,1, true));
-		Rectangle kasts=new Rectangle(0, 525, 550, 125);
-		kasts.setFill(new ImagePattern(logo, 0, 0, 1,1, true));
+        Image logo = new Image("/POS/src/ee/ut/math/tvt/tiim_number_kaks/number 2.png", true);
+        ImageView iv1 = new ImageView();
+        iv1.setImage(logo);
 		
 		Text Juht= new Text();
 		Juht.setX(10);
@@ -62,6 +63,8 @@ public class IntroUI extends Application {
 		
 		
 		primaryStage.setScene(new Scene(juur));
+		HBox box = new HBox();
+        box.getChildren().add(iv1);
 	    primaryStage.show();
 		
 	}
