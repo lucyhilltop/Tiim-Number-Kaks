@@ -22,7 +22,7 @@ public class IntroUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
-		//Failist lugemine:
+		//applicationist lugemine:
 		ArrayList<String> list1 = new ArrayList<String>();
 		java.io.File fail = new java.io.File("application.properties");
 		Scanner sc = new Scanner(fail);
@@ -30,11 +30,15 @@ public class IntroUI extends Application {
 		    String rida = sc.nextLine();
 		    list1.add(rida);
 		}
-		sc.close();
 		
-		for(int i = 0; i< list1.size(); i++){
-	    	System.out.print(list1.get(i) + "\n");
-	    } 
+		java.io.File fail2 = new java.io.File("version.properties");
+		Scanner sc2 = new Scanner(fail2);
+		while (sc2.hasNextLine()) {
+		    String rida2 = sc2.nextLine();
+		    list1.add(rida2);
+		}
+		sc.close();
+		sc2.close();
 		    
 		primaryStage.setTitle("Tiim number 2");
 		Group juur = new Group();
@@ -70,7 +74,7 @@ public class IntroUI extends Application {
 		Software_version.setX(10);
 		Software_version.setY(100);
 		Software_version.setCache(true);
-		Software_version.setText("0.0.0");
+		Software_version.setText(list1.get(9));
 		
 		
 		juur.getChildren().add(Tiim);
