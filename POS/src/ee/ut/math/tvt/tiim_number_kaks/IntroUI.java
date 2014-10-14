@@ -1,8 +1,13 @@
 package ee.ut.math.tvt.tiim_number_kaks;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,6 +22,12 @@ public class IntroUI extends Application {
 		Tiim.setY(20);
 		Tiim.setCache(true);
         Tiim.setText("Tiim Number 2");
+        
+        Image logo = new Image("ee.ut.math.tvt.tiim_number_kaks/number 2.png");
+        Rectangle kastl=new Rectangle(0, 400, 550, 125);
+		kastl.setFill(new ImagePattern(logo, 0, 0, 1,1, true));
+		Rectangle kasts=new Rectangle(0, 525, 550, 125);
+		kasts.setFill(new ImagePattern(logo, 0, 0, 1,1, true));
 		
 		Text Juht= new Text();
 		Juht.setX(10);
