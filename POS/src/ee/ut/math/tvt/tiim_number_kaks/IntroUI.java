@@ -1,5 +1,9 @@
 package ee.ut.math.tvt.tiim_number_kaks;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -17,14 +21,28 @@ import javafx.stage.Stage;
 public class IntroUI extends Application {
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws FileNotFoundException {
+		//Failist lugemine:
+		ArrayList<String> list1 = new ArrayList<String>();
+		java.io.File fail = new java.io.File("application.properties");
+		Scanner sc = new Scanner(fail);
+		while (sc.hasNextLine()) {
+		    String rida = sc.nextLine();
+		    list1.add(rida);
+		}
+		sc.close();
+		
+		for(int i = 0; i< list1.size(); i++){
+	    	System.out.print(list1.get(i) + "\n");
+	    } 
+		    
 		primaryStage.setTitle("Tiim number 2");
 		Group juur = new Group();
 		Text Tiim= new Text();
 		Tiim.setX(10);
 		Tiim.setY(20);
 		Tiim.setCache(true);
-        Tiim.setText("Tiim Number 2");
+        Tiim.setText(list1.get(1));
         
         Image logo = new Image(getClass().getResourceAsStream("number.png"));
         ImageView iv1 = new ImageView();
@@ -34,19 +52,19 @@ public class IntroUI extends Application {
 		Juht.setX(10);
 		Juht.setY(40);
 		Juht.setCache(true);
-        Juht.setText("Silver Pajumäe");
+        Juht.setText(list1.get(3));
         
 		Text Juhi_email= new Text();
 		Juhi_email.setX(10);
 		Juhi_email.setY(60);
 		Juhi_email.setCache(true);
-		Juhi_email.setText("silverpajumae@hotmail.com");
+		Juhi_email.setText(list1.get(5));
 		
 		Text Liikmed= new Text();
 		Liikmed.setX(10);
 		Liikmed.setY(80);
 		Liikmed.setCache(true);
-		Liikmed.setText("Liis Mäeots, Mikk Tark, Silver Pajumäe");
+		Liikmed.setText(list1.get(7));
 		
 		Text Software_version= new Text();
 		Software_version.setX(10);
