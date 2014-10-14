@@ -5,22 +5,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class IntroUI extends Application {
 
-	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		//applicationist lugemine:
 		ArrayList<String> list1 = new ArrayList<String>();
@@ -86,14 +80,10 @@ public class IntroUI extends Application {
 		
 		primaryStage.setScene(new Scene(juur));
 		HBox box = new HBox();
-		box.setLayoutX(230);
+		box.setLayoutX(260);
         box.getChildren().add(iv1);
         juur.getChildren().add(box);        
 	    primaryStage.show();
 		
-	}
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 }
