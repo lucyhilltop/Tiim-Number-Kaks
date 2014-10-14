@@ -26,7 +26,7 @@ public class IntroUI extends Application {
 		Tiim.setCache(true);
         Tiim.setText("Tiim Number 2");
         
-        Image logo = new Image("/POS/src/ee/ut/math/tvt/tiim_number_kaks/number 2.png", true);
+        Image logo = new Image(getClass().getResourceAsStream("number.png"));
         ImageView iv1 = new ImageView();
         iv1.setImage(logo);
 		
@@ -65,6 +65,7 @@ public class IntroUI extends Application {
 		primaryStage.setScene(new Scene(juur));
 		HBox box = new HBox();
         box.getChildren().add(iv1);
+        juur.getChildren().add(box);        
 	    primaryStage.show();
 		
 	}
