@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class Intro extends Application {
 
 	final static IntroUI ui = new IntroUI();
-	
+	 
 	public void start(Stage primaryStage) throws FileNotFoundException {
 		ui.start(primaryStage);
 	}
