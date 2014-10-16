@@ -80,6 +80,7 @@
 				<attribute name="Class-Path" value="file:///C:/Program%20Files%20(x86)/Java/jre7/lib/jfxrt.jar ."/>
 			</manifest>
 		</jar>
+		<buildnumber file="version.properties"/>
 	</target>
 	
 	<target name="jrun" depends="dist">
