@@ -38,10 +38,17 @@
 	<target name="build" description="Build the system">
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${build.classes.dir}"/>
+		
+		<copy todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/">
+		    <fileset dir="${basedir}">
+		        <include name="*.properties"/>
+		      </fileset>
+		  </copy>
 		<copy 
-			file="${src.dir}/ee/ut/math/tvt/tiim_number_kaks/number.png" 
-			todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/"
-		/>
+					file="${src.dir}/ee/ut/math/tvt/tiim_number_kaks/number.png" 
+					todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/"
+				/>
+		
 		<javac
             srcdir="${src.dir}"
             destdir="${build.classes.dir}"
@@ -66,9 +73,7 @@
 	</target>
 	
 	<target name="dist" depends="build" description="Build jar file">
-		<copy file="application.properties" todir="${dist.dir}"/>
-		<copy file="version.properties" todir="${dist.dir}"/>
-		<jar destfile="${dist.dir}/tiim_number_kaks.jar"	basedir="${build.classes.dir}">
+		<jar destfile="${build.dir}/jar/tiim_number_kaks.jar" basedir="${build.classes.dir}">
 			<manifest>
 				<attribute name="Main-Class" value="ee.ut.math.tvt.tiim_number_kaks.Intro"/>
 				<!-- Dirty file url hack for JavaFX -->
@@ -78,7 +83,7 @@
 	</target>
 	
 	<target name="jrun" depends="dist">
-		<java jar="${dist.dir}/app.jar" fork="yes"/>
+		<java jar="${build.dir}/jar/tiim_number_kaks.jar" fork="yes"/>
 	</target>
 
 	<!-- Clean up build system results -->
