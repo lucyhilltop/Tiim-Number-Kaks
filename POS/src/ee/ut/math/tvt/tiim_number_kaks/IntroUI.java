@@ -29,9 +29,9 @@ public class IntroUI extends Application {
 			throw new FileNotFoundException("property file 'applications.properties' not found in the classpath");
 		}
 		
-		String nimi = prop.getProperty("Tiimi nimi");
+		String nimi = prop.getProperty("Tiim");
 		String juht = prop.getProperty("Juht");
-		String juhimeil = prop.getProperty("Juhi e-mail");
+		String juhimeil = prop.getProperty("email");
 		String liikmed = prop.getProperty("Liikmed");
 		result = "Tiimi nimi: " + nimi + "\n" + "Tiimi juht: " + juht + "\n" + 
 				"Juhi e-mail: " + juhimeil + "\n" + "Liikmed: " + liikmed;

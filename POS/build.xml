@@ -3,93 +3,90 @@
 
 	<!-- Definitions of variables used during the rest of this script -->
 
-	<property file="build.properties"/>
-	<property name="build.dir" value="${basedir}/build"/>
-	<property name="build.classes.dir" value="${build.dir}/classes"/>
-	<property name="src.dir" value="${basedir}/src"/>
-	<property name="dist.dir" value="${basedir}/dist"/>
-	<property name="conf.dir" value="${basedir}/etc"/>
-	<property name="doc.dir" value="${build.dir}/doc"/>
-	<property name="test.reports.dir" value="${build.dir}/reports/"/>
-	
+	<property file="build.properties" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="build.classes.dir" value="${build.dir}/classes" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="libs.dir" value="${basedir}/lib" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="conf.dir" value="${basedir}/etc" />
+	<property name="doc.dir" value="${build.dir}/doc" />
+	<property name="test.reports.dir" value="${build.dir}/reports/" />
+	<property environment="env" />
+	<property name="java.libs" value="${env.JAVA_HOME}/jre/lib" />
+	<property name="java.fx.path" value="${java.libs}/jfxrt.jar" />
+
 	<!-- Definitions of classpath variants used for different tasks -->
 
 	<path id="compile.classpath">
 		<fileset dir="lib">
-			<include name="*.jar"/>
+			<include name="*.jar" />
 		</fileset>
-		<pathelement location="C:\Program Files (x86)\Java\jre7\lib\jfxrt.jar"/>
+		<pathelement location="${java.fx.path}" />
 	</path>
 
 	<path id="test.classpath">
-		<pathelement location="${build.classes.dir}"/>
+		<pathelement location="${build.classes.dir}" />
 		<!-- configuration -->
-		<pathelement location="${conf.dir}"/>
+		<pathelement location="${conf.dir}" />
 		<fileset dir="lib">
-			<include name="*.jar"/>
+			<include name="*.jar" />
 		</fileset>
-		<pathelement location="C:\Program Files (x86)\Java\jre7\lib\jfxrt.jar"/>
+		<pathelement location="${java.fx.path}" />
 	</path>
 
 	<target name="run" depends="build" description="Run the template application">
-		<java classname="ee.ut.math.tvt.tiim_number_kaks.Intro" classpathref="test.classpath" fork="yes" />
+		<java classname="ee.ut.math.tvt.tiim_number_kaks.Intro"
+			classpathref="test.classpath" fork="yes" />
 	</target>
 
 	<target name="build" description="Build the system">
-		<mkdir dir="${build.dir}"/>
-		<mkdir dir="${build.classes.dir}"/>
-		
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes.dir}" />
+
 		<copy todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/">
-		    <fileset dir="${basedir}">
-		        <include name="*.properties"/>
-		      </fileset>
-		  </copy>
-		<copy 
-					file="${src.dir}/ee/ut/math/tvt/tiim_number_kaks/number.png" 
-					todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/"
-				/>
-		
-		<javac
-            srcdir="${src.dir}"
-            destdir="${build.classes.dir}"
-            debug="true"
-            debuglevel="lines,vars,source"
-            encoding="utf-8"
-            compiler="modern"
-            target="1.7"
-            source="1.7"
-			includeantruntime="false">
-			<classpath refid="compile.classpath"/>
+			<fileset dir="${basedir}">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<copy file="${src.dir}/ee/ut/math/tvt/tiim_number_kaks/number.png"
+			todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/" />
+
+		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="true"
+			debuglevel="lines,vars,source" encoding="utf-8" compiler="modern"
+			target="1.7" source="1.7" includeantruntime="false">
+			<classpath refid="compile.classpath" />
 		</javac>
 
 	</target>
 
 	<!-- Build internal documentation -->
 	<target name="javadoc" description="Build internal documentation">
-		<mkdir dir="${doc.dir}"/>
+		<mkdir dir="${doc.dir}" />
 		<javadoc destdir="${doc.dir}" classpathref="compile.classpath">
-			<fileset dir="${src.dir}" includes="**/*.java"/>
+			<fileset dir="${src.dir}" includes="**/*.java" />
 		</javadoc>
 	</target>
-	
+
 	<target name="dist" depends="build" description="Build jar file">
 		<jar destfile="${build.dir}/jar/tiim_number_kaks.jar" basedir="${build.classes.dir}">
+			<zipgroupfileset dir="${java.libs}" includes="jfxrt.jar" />
+			<zipgroupfileset dir="${libs.dir}" includes="**/*.jar" />
 			<manifest>
-				<attribute name="Main-Class" value="ee.ut.math.tvt.tiim_number_kaks.Intro"/>
-				<!-- Dirty file url hack for JavaFX -->
-				<attribute name="Class-Path" value="file:///C:/Program%20Files%20(x86)/Java/jre7/lib/jfxrt.jar ."/>
+				<attribute name="Main-Class" value="ee.ut.math.tvt.tiim_number_kaks.Intro" />
 			</manifest>
 		</jar>
-		<buildnumber file="version.properties"/>
+		<buildnumber file="version.properties" />
 	</target>
-	
+
 	<target name="jrun" depends="dist">
-		<java jar="${build.dir}/jar/tiim_number_kaks.jar" fork="yes"/>
+		<java jar="${build.dir}/jar/tiim_number_kaks.jar" fork="yes" />
 	</target>
 
 	<!-- Clean up build system results -->
 	<target name="clean" description="Clean up build system results">
-		<delete dir="${build.dir}"/>
+		<delete dir="${build.dir}" />
 	</target>
 
 </project>
+
