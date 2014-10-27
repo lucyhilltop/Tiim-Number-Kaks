@@ -170,15 +170,16 @@ public class PurchaseItemPanel extends JPanel {
     public void addItemEventHandler() {
         // add chosen item to the shopping cart.
         StockItem stockItem = getStockItemByBarcode();
-        if (stockItem.getQuantity() < 1 || stockItem.getQuantity() < Integer.parseInt(quantityField.getText())){
+        Integer q = stockItem.getQuantity();
+        if (q < 1 || q < Integer.parseInt(quantityField.getText())){
         	JFrame frame = new JFrame("Error");
         	JOptionPane.showMessageDialog(frame, "There are not enough items in the warehouse.","Warning",  JOptionPane.ERROR_MESSAGE);
-        	System.out.println("There are not enough items in the warehouse.");
         }
         else if (stockItem != null) {
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityField.getText());
+                stockItem.setQuantity(q-quantity);
             } catch (NumberFormatException ex) {
                 quantity = 1;
             }
