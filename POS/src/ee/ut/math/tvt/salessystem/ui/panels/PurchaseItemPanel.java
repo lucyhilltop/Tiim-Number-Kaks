@@ -18,7 +18,9 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,6 +38,7 @@ public class PurchaseItemPanel extends JPanel {
     private JTextField quantityField;
     private JTextField nameField;
     private JTextField priceField;
+    
 
     private JButton addItemButton;
 
@@ -163,6 +166,8 @@ public class PurchaseItemPanel extends JPanel {
         // add chosen item to the shopping cart.
         StockItem stockItem = getStockItemByBarcode();
         if (stockItem.getQuantity() < 1 || stockItem.getQuantity() < Integer.parseInt(quantityField.getText())){
+        	JFrame frame = new JFrame("Error");
+        	JOptionPane.showMessageDialog(frame, "There are not enough items in the warehouse.","Warning",  JOptionPane.ERROR_MESSAGE);
         	System.out.println("There are not enough items in the warehouse.");
         }
         else if (stockItem != null) {
