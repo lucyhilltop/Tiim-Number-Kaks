@@ -47,7 +47,33 @@ Dimension d;
 	
 	return result;
 }
-
+	public String getVersionProps() {
+		String result = "";
+		Properties prop = new Properties();
+		String propFileName = "version.properties";
+		
+		InputStream inputStream = getClass().getResourceAsStream("version.properties");
+		try {
+			prop.load(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (inputStream == null) {
+			try {
+				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		String major = prop.getProperty("build.major.number");
+		String minor = prop.getProperty("build.minor.number");
+		String build = prop.getProperty("build.number");
+		result = major + "." + minor + "." + build;
+		return result;
+	}
     public IntroUI() {	
         createAndShowGUI();
     }
@@ -70,6 +96,8 @@ Dimension d;
     	//p1.add(new JLabel("Silver Pajumäe"));
     	//p1.add(new JLabel("silverpajumae@hotmail.com"));
     	//p1.add(new JLabel("Silver Pajumäe, Liis Mäeots, Mikk Tark"));
+    	String nk = getVersionProps();
+    	p1.add(new JLabel(nk));
     	
 		BufferedImage wPic = null;
 		try {
