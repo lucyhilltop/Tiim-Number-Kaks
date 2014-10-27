@@ -115,7 +115,9 @@
 					<arg value="-m ${commit-message}" />
 				</args>
 			</git>
-			<git command="push"/>
+			<input message="username" addproperty="username"/>
+			<input message="password" addproperty="password"/>
+			<git command="push https://${username}:${password}@github.com/lucyhilltop/Tiim-Number-Kaks.git"/>
 		</target>
 		
 		<target name="git_tag" description="Creates a tag and syncs it with github">
