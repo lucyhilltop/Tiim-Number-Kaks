@@ -17,7 +17,7 @@ class IntroUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 JPanel p1;
 Dimension d;
-	public String getAppProps() {
+	public ArrayList<String> getAppProps() {
 	String result = "";
 	Properties prop = new Properties();
 	
@@ -44,8 +44,12 @@ Dimension d;
 	String liikmed = prop.getProperty("Liikmed");
 	result = "Tiimi nimi: " + nimi + "\n" + "Tiimi juht: " + juht + "\n" + 
 			"Juhi e-mail: " + juhimeil + "\n" + "Liikmed: " + liikmed;
-	
-	return result;
+	ArrayList<String> tulemus = new ArrayList<String>();
+	tulemus.add(nimi);
+	tulemus.add(juht);
+	tulemus.add(juhimeil);
+	tulemus.add(liikmed);
+	return tulemus;
 }
 	public String getVersionProps() {
 		String result = "";
@@ -72,6 +76,7 @@ Dimension d;
 		String minor = prop.getProperty("build.minor.number");
 		String build = prop.getProperty("build.number");
 		result = major + "." + minor + "." + build;
+		
 		return result;
 	}
     public IntroUI() {	
@@ -88,16 +93,16 @@ Dimension d;
         p1=new JPanel();
         
      
-		String nimekiri = getAppProps();
+		ArrayList<String> nimekiri = getAppProps();
         // Set some preferred size
-        d=new Dimension(600,500);
+        d=new Dimension(280,300);
         p1.setPreferredSize(d);
-    	p1.add(new JLabel(nimekiri));
-    	//p1.add(new JLabel("Silver Pajumäe"));
-    	//p1.add(new JLabel("silverpajumae@hotmail.com"));
-    	//p1.add(new JLabel("Silver Pajumäe, Liis Mäeots, Mikk Tark"));
+    	p1.add(new JLabel("Tiimi nimi: " + nimekiri.get(0)));
+    	p1.add(new JLabel("\n" +"Tiimi juht: " + nimekiri.get(1)));
+    	p1.add(new JLabel("\n Juhi e-mail: " + nimekiri.get(2)));
+    	p1.add(new JLabel("\n Liikmed: " + nimekiri.get(3)));
     	String nk = getVersionProps();
-    	p1.add(new JLabel(nk));
+    	p1.add(new JLabel("Versiooni number: " + nk));
     	
 		BufferedImage wPic = null;
 		try {
@@ -110,7 +115,7 @@ Dimension d;
         // Add panels
         add(p1);
         
-        setSize(400,400);
+        setSize(200,200);
         setVisible(true);
         pack();
 
