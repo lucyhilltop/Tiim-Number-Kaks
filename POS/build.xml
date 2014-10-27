@@ -87,6 +87,48 @@
 	<target name="clean" description="Clean up build system results">
 		<delete dir="${build.dir}" />
 	</target>
+	
+	<macrodef name = "git">
+	    <attribute name = "command" />
+	    <attribute name = "dir" default = "" />
+	    <element name = "args" optional = "true" />
+	    <sequential>
+	        <echo message = "git @{command}" />
+	        <exec executable = "git" dir = "@{dir}">
+	            <arg value = "@{command}" />
+	            <args/>
+	        </exec>
+	    </sequential>
+	</macrodef>
+	 
+		<target name="git_commit" description="Commits all changes to git">
+			<input message="Commit message" addproperty="commit-message" />
+			
+			<echo message="Commiting all changes with message ${commit-message}" />
+			<git command="add">
+				<args>
+					<arg value="-A" />
+				</args>
+			</git>
+			<git command="commit">
+				<args>
+					<arg value="-m ${commit-message}" />
+				</args>
+			</git>
+			<git command="push"/>
+		</target>
+		
+		<target name="git_tag" description="Creates a tag and syncs it with github">
+			<input message="Tag name" addproperty= "homework_n"/>
+			<input message="Comment" addproperty="comment"/>
+			<git command="tag">
+			<args>
+				<arg value="-a ${homework_n}"/>
+				<arg value="-m ${comment}"/>
+			</args>
+			</git>
+		</target>
+			
 
 </project>
 
