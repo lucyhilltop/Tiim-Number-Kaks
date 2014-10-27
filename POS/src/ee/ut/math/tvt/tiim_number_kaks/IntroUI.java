@@ -17,7 +17,7 @@ class IntroUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 JPanel p1;
 Dimension d;
-	public ArrayList<String> getAppProps() {
+	public String getAppProps() {
 	String result = "";
 	Properties prop = new Properties();
 	
@@ -34,28 +34,21 @@ Dimension d;
 			throw new FileNotFoundException("property file 'applications.properties' not found in the classpath");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Siin on viga!");
 		}
 	}
 	
-	String nimi = prop.getProperty("Tiimi nimi");
+	String nimi = prop.getProperty("Tiim");
 	String juht = prop.getProperty("Juht");
-	String juhimeil = prop.getProperty("Juhi e-mail");
+	String juhimeil = prop.getProperty("email");
 	String liikmed = prop.getProperty("Liikmed");
 	result = "Tiimi nimi: " + nimi + "\n" + "Tiimi juht: " + juht + "\n" + 
 			"Juhi e-mail: " + juhimeil + "\n" + "Liikmed: " + liikmed;
-	ArrayList<String> list = new ArrayList<String>();
-	list.add(nimi);
-	list.add(juht);
-	list.add(juhimeil);
-	list.add(liikmed);
-	return list;
+	
+	return result;
 }
 
-    public IntroUI() {
-    	IntroUI a_props = null;
-		ArrayList<String> nimekiri = a_props.getAppProps();
-    	System.out.println(nimekiri.get(0));
+    public IntroUI() {	
         createAndShowGUI();
     }
     
@@ -68,15 +61,15 @@ Dimension d;
         // An empty panel with FlowLayout
         p1=new JPanel();
         
-        IntroUI a_props = new IntroUI();
+     
+		String nimekiri = getAppProps();
         // Set some preferred size
-        d=new Dimension(300,200);
+        d=new Dimension(600,500);
         p1.setPreferredSize(d);
-        ArrayList<String> nimekiri = a_props.getAppProps();
-    	p1.add(new JLabel("Tiimi nimi" + nimekiri.get(0)));
-    	p1.add(new JLabel("Silver Pajumäe"));
-    	p1.add(new JLabel("silverpajumae@hotmail.com"));
-    	p1.add(new JLabel("Silver Pajumäe, Liis Mäeots, Mikk Tark"));
+    	p1.add(new JLabel(nimekiri));
+    	//p1.add(new JLabel("Silver Pajumäe"));
+    	//p1.add(new JLabel("silverpajumae@hotmail.com"));
+    	//p1.add(new JLabel("Silver Pajumäe, Liis Mäeots, Mikk Tark"));
     	
 		BufferedImage wPic = null;
 		try {
@@ -97,6 +90,12 @@ Dimension d;
     
     public static void main(String args[])
     {
-        new IntroUI();
+        try {
+			new IntroUI();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Siin on jama :(");
+			e.printStackTrace();
+		}
     }
 }

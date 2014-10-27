@@ -128,11 +128,17 @@
 			<input message="Tag name" addproperty= "homework_n"/>
 			<input message="Comment" addproperty="comment"/>
 			<git command="tag">
-			<args>
-				<arg value="-a ${homework_n}"/>
-				<arg value="-m ${comment}"/>
-			</args>
+				<args>
+					<arg line="-a ${homework_n} -m &quot;${comment}&quot;"/>
+				</args>
 			</git>
+			<input message="username" addproperty="username"/>
+			<input message="password" addproperty="password"/>
+				<git command="push">
+					<args>
+						<arg line="--tags https://${username}:${password}@github.com/lucyhilltop/Tiim-Number-Kaks.git"/>
+					</args>
+				</git>
 		</target>
 			
 
