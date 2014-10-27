@@ -162,7 +162,10 @@ public class PurchaseItemPanel extends JPanel {
     public void addItemEventHandler() {
         // add chosen item to the shopping cart.
         StockItem stockItem = getStockItemByBarcode();
-        if (stockItem != null) {
+        if (stockItem.getQuantity() < 1 || stockItem.getQuantity() < Integer.parseInt(quantityField.getText())){
+        	System.out.println("There are not enough items in the warehouse.");
+        }
+        else if (stockItem != null) {
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityField.getText());
