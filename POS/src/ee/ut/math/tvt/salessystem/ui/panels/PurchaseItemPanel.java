@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import javax.swing.BorderFactory;
@@ -90,8 +91,12 @@ public class PurchaseItemPanel extends JPanel {
 
         // Initialize the textfields
         //barCodeField = new JTextField();
-        String[] tooted = {"1","2","3","4"};
-        barCodeField = new JComboBox(tooted);
+        
+        barCodeField = new JComboBox();
+        for (int i = 1; i <= model.getWarehouseTableModel().getRowCount(); i++) {
+        	barCodeField.addItem(model.getWarehouseTableModel().getItemById(i).getName());
+        }
+        
         quantityField = new JTextField("1");
         nameField = new JTextField();
         priceField = new JTextField();
@@ -150,8 +155,8 @@ public class PurchaseItemPanel extends JPanel {
     // to the barCode textfield.
     private StockItem getStockItemByBarcode() {
         try {
-            int code = Integer.parseInt((String) barCodeField.getSelectedItem());
-            return model.getWarehouseTableModel().getItemById(code);
+            String code = (String) barCodeField.getSelectedItem();
+            return model.getWarehouseTableModel().getItemByName(code);
         } catch (NumberFormatException ex) {
             return null;
         } catch (NoSuchElementException ex) {
