@@ -173,7 +173,9 @@ public class PurchaseTab {
     log.info("Sale complete");
     try {
     	JFrame frame = new JFrame("Confirm");
-    	  JOptionPane.showMessageDialog(frame, "Siia peaksid tulema need summa jms", "Confirm",  JOptionPane.PLAIN_MESSAGE);
+    	JOptionPane.showConfirmDialog(
+    		    frame,
+    		    "Would you like to confirm the order?","Confirmation",JOptionPane.YES_NO_OPTION);
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()

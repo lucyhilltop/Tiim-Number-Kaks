@@ -34,10 +34,9 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		throw new IllegalArgumentException("Column index out of range");
 	}
 
-	@Override
+
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
-
 		for (int i = 0; i < headers.length; i++)
 			buffer.append(headers[i] + "\t");
 		buffer.append("\n");
