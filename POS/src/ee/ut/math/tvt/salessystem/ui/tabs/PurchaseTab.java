@@ -173,20 +173,34 @@ public class PurchaseTab {
     log.info("Sale complete");
     try {
     	JFrame frame = new JFrame("Confirm");
+    	
+    	//Sum of the items currently in the shopping cart
     	double orderSum = 0;
     	for(int i = 0; i < model.getCurrentPurchaseTableModel().getRowCount(); i++) {
     		double itemSum = (double) model.getCurrentPurchaseTableModel().getValueAt(i, 4);
-    		orderSum = orderSum + itemSum;
+    		orderSum += itemSum;
     	}
+    	
+    	//Confirm the sum
     	JOptionPane.showConfirmDialog(
     		    frame,
-    		    "The sum of the current order is " + orderSum + " EUR","Confirm",JOptionPane.YES_NO_OPTION);
+    		    "The sum of the current order is "+orderSum+" EUR","Order sum",JOptionPane.YES_NO_OPTION);
+    	
+    	//Insert the amount paid by the customer
+    	String inputValue = JOptionPane.showInputDialog("Insert the amount of money paid.");
+    	double change = Double.parseDouble(inputValue) - orderSum;
+    	
+    	//Show the order sum and change, final confirmation
+    	JOptionPane.showConfirmDialog(
+    			frame,
+    			"The sum of the current order is "+orderSum+" EUR. Change amount is "+change+" EUR.","Confirmation",JOptionPane.YES_NO_OPTION);
+    
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
       );
       endSale();
-      
+    
       model.getCurrentPurchaseTableModel().clear();
     } catch (VerificationFailedException e1) {
       log.error(e1.getMessage());
