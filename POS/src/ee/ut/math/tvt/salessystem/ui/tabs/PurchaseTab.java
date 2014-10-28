@@ -173,9 +173,14 @@ public class PurchaseTab {
     log.info("Sale complete");
     try {
     	JFrame frame = new JFrame("Confirm");
+    	double orderSum = 0;
+    	for(int i = 0; i < model.getCurrentPurchaseTableModel().getRowCount(); i++) {
+    		double itemSum = (double) model.getCurrentPurchaseTableModel().getValueAt(i, 4);
+    		orderSum = orderSum + itemSum;
+    	}
     	JOptionPane.showConfirmDialog(
     		    frame,
-    		    "Would you like to confirm the order?","Confirmation",JOptionPane.YES_NO_OPTION);
+    		    "The sum of the current order is " + orderSum + " EUR","Confirm",JOptionPane.YES_NO_OPTION);
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
