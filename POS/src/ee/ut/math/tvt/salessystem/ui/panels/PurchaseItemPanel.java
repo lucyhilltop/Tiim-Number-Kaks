@@ -95,8 +95,14 @@ public class PurchaseItemPanel extends JPanel {
         for (int i = 1; i <= model.getWarehouseTableModel().getRowCount(); i++) {
         	barCodeField.addItem(model.getWarehouseTableModel().getItemById(i).getName());
         }
+        barCodeField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	fillDialogFields();
+            }
+        });
         
         quantityField = new JTextField("1");
+
         nameField = new JTextField();
         priceField = new JTextField();
 
@@ -136,6 +142,7 @@ public class PurchaseItemPanel extends JPanel {
 
         return panel;
     }
+    
 
     // Fill dialog with data from the "database".
     public void fillDialogFields() {
@@ -168,6 +175,7 @@ public class PurchaseItemPanel extends JPanel {
      */
     public void addItemEventHandler() {
         // add chosen item to the shopping cart.
+    	fillDialogFields();
         StockItem stockItem = getStockItemByBarcode();
         Integer q = stockItem.getQuantity();
         if (q < 1 || q < Integer.parseInt(quantityField.getText())){
