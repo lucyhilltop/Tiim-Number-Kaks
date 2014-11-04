@@ -190,11 +190,20 @@ public class PurchaseTab {
     	String inputValue = JOptionPane.showInputDialog("Insert the amount of money paid.");
     	double change = Double.parseDouble(inputValue) - orderSum;
     	
+    	if (change < orderSum) {
+    		JOptionPane.showMessageDialog(
+    				frame, 
+    				"The amount of change can't be negative");
+    		
+    	}
+    	
+    	else {
     	//Show the order sum and change, final confirmation
     	JOptionPane.showConfirmDialog(
     			frame,
     			"The sum of the current order is "+orderSum+" EUR. Change amount is "+change+" EUR.","Confirmation",JOptionPane.YES_NO_OPTION);
     
+    	}
       log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
       domainController.submitCurrentPurchase(
           model.getCurrentPurchaseTableModel().getTableRows()
