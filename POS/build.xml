@@ -111,7 +111,7 @@
 	        </exec>
 	    </sequential>
 	</macrodef>
-	 
+	 <!--hrhtrhtr-->
 		<target name="git_commit" description="Commits all changes to git">
 			<input message="Commit message" addproperty="commit-message" />
 			
