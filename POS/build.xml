@@ -25,6 +25,7 @@
 		<pathelement location="${java.fx.path}" />
 	</path>
 
+	<!-- testi jaoks kommentaar-->
 	<path id="test.classpath">
 		<pathelement location="${build.classes.dir}" />
 		<!-- configuration -->
