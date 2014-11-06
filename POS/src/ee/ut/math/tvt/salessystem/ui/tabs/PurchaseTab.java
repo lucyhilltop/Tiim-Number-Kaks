@@ -190,7 +190,7 @@ public class PurchaseTab {
     	String inputValue = JOptionPane.showInputDialog("Insert the amount of money paid.");
     	double change = Double.parseDouble(inputValue) - orderSum;
     	
-    	if (change < orderSum) {
+    	if (change < 0) {
     		JOptionPane.showMessageDialog(
     				frame, 
     				"The amount of change can't be negative");
