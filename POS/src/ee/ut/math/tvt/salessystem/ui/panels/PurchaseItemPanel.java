@@ -182,7 +182,7 @@ public class PurchaseItemPanel extends JPanel {
         	JFrame frame = new JFrame("Error");
         	JOptionPane.showMessageDialog(frame, "There are not enough items in the warehouse.","Warning",  JOptionPane.ERROR_MESSAGE);
         }
-        if (1 > Integer.parseInt(quantityField.getText())){
+        else if (1 > Integer.parseInt(quantityField.getText())){
         	JFrame frame = new JFrame("Error");
         	JOptionPane.showMessageDialog(frame, "Amount is 0 or negative","Warning",  JOptionPane.ERROR_MESSAGE);
         }
