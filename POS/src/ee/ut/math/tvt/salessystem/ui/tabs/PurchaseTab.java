@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -11,6 +12,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -199,20 +201,20 @@ public class PurchaseTab {
     	
     	else {
     	//Show the order sum and change, final confirmation
-    	JOptionPane.showConfirmDialog(
+    	int reply = JOptionPane.showConfirmDialog(
     			frame,
     			"The sum of the current order is "+orderSum+" EUR. Change amount is "+change+" EUR.","Confirmation",JOptionPane.YES_NO_OPTION);
-    
+    	if (reply == JOptionPane.YES_OPTION) {
+    		endSale();
+    		List<SoldItem> korv = (model.getCurrentPurchaseTableModel().getTableRows());
+    		model.getCurrentPurchaseTableModel().clear();
+    		log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
+    		domainController.submitCurrentPurchase(korv);
     	}
-      log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-      domainController.submitCurrentPurchase(
-          model.getCurrentPurchaseTableModel().getTableRows()
-      );
-      endSale();
-    
-      model.getCurrentPurchaseTableModel().clear();
+    	
+    	}
     } catch (VerificationFailedException e1) {
-      log.error(e1.getMessage());
+    	log.error(e1.getMessage());
     }
   }
 

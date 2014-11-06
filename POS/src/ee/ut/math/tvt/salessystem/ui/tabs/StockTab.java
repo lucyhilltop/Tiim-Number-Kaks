@@ -1,21 +1,75 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 
 
 public class StockTab {
 
   private JButton addItem;
+  
+  
+  private JButton createaddItemButton() {
+	    JButton b = new JButton("Add Item");
+	    b.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	        addItemButtonClicked();
+	      }
+
+		private void addItemButtonClicked() {
+			JPanel panel = new JPanel(new GridLayout(0, 1, 5, 5));
+			JTextField Id = new JTextField(5);
+			JTextField Name = new JTextField(5);
+			JTextField Description = new JTextField(5);
+			JTextField Price = new JTextField(5);
+			JTextField Quantity = new JTextField(5);
+			panel.add(new JLabel("Id:"));
+			panel.add(Id);
+			panel.add(new JLabel("Name:"));
+			panel.add(Name);
+			panel.add(new JLabel("Description:"));
+			panel.add(Description);
+			panel.add(new JLabel("Price:"));
+			panel.add(Price);
+			panel.add(new JLabel("Quantity:"));
+			panel.add(Quantity);
+			int result = JOptionPane.showConfirmDialog(null, panel, 
+		               "Enter Item Information", JOptionPane.OK_CANCEL_OPTION);
+			if (result == JOptionPane.OK_OPTION) {
+				long id=Long.parseLong(Id.getText());
+				String name=Name.getText();
+				String description=Description.getText();
+				Double price=Double.parseDouble(Price.getText());
+				int quantity=Integer.parseInt(Quantity.getText());
+				StockItem uus = new StockItem(id,name,description,price,quantity);
+				model.getWarehouseTableModel().addItem(uus);
+				
+		      }
+		}
+	    });
+
+	    return b;
+	  }
 
   private SalesSystemModel model;
 
@@ -58,7 +112,7 @@ public class StockTab {
     gc.anchor = GridBagConstraints.NORTHWEST;
     gc.weightx = 0;
 
-    addItem = new JButton("Add");
+    addItem = createaddItemButton();
     gc.gridwidth = GridBagConstraints.RELATIVE;
     gc.weightx = 1.0;
     panel.add(addItem, gc);

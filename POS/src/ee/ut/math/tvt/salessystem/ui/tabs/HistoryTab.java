@@ -1,8 +1,13 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import java.awt.Component;
+import java.awt.GridBagLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  * Encapsulates everything that has to do with the purchase tab (the tab
@@ -10,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class HistoryTab {
     
-    // TODO - implement!
+
 
     public HistoryTab() {} 
     
@@ -19,4 +24,5 @@ public class HistoryTab {
         // TODO - Sales history tabel
         return panel;
     }
+    
 }
