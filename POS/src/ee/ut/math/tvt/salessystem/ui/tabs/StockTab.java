@@ -63,6 +63,7 @@ public class StockTab {
 				int quantity=Integer.parseInt(Quantity.getText());
 				StockItem uus = new StockItem(id,name,description,price,quantity);
 				model.getWarehouseTableModel().addItem(uus);
+				model.getWarehouseTableModel().fireTableDataChanged();
 				
 		      }
 		}
