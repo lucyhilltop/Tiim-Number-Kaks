@@ -19,7 +19,6 @@ import ee.ut.math.tvt.salessystem.domain.data.StockItem;
  * A simple CLI (limited functionality).
  * 
  */
-//Suvakas kommentaar
 public class ConsoleUI {
 	private static final Logger log = Logger.getLogger(ConsoleUI.class);
 

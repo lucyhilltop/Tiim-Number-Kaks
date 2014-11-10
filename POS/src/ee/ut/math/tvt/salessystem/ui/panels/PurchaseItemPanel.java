@@ -53,7 +53,6 @@ public class PurchaseItemPanel extends JPanel {
      */
     public PurchaseItemPanel(SalesSystemModel model) {
         this.model = model;
-
         setLayout(new GridBagLayout());
 
         add(drawDialogPane(), getDialogPaneConstraints());
@@ -99,6 +98,7 @@ public class PurchaseItemPanel extends JPanel {
         }
         barCodeField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	fillDialogFields();
             	for (int i=1; i<=model.getWarehouseTableModel().getRowCount();i++) {
             		if(olemas.contains(i)){
             		}
