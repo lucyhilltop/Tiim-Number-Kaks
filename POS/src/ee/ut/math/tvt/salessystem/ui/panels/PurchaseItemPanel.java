@@ -90,15 +90,24 @@ public class PurchaseItemPanel extends JPanel {
 
         // Initialize the textfields
         //barCodeField = new JTextField();
-        
+        final ArrayList olemas = new ArrayList();
         barCodeField = new JComboBox();
         for (int i = 1; i <= model.getWarehouseTableModel().getRowCount(); i++) {
         	barCodeField.addItem(model.getWarehouseTableModel().getItemById(i).getName());
+        	olemas.add(i);
+        	
         }
         barCodeField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	fillDialogFields();
-            }
+            	for (int i=1; i<=model.getWarehouseTableModel().getRowCount();i++) {
+            		if(olemas.contains(i)){
+            		}
+            		else {
+            			barCodeField.addItem(model.getWarehouseTableModel().getItemById(i).getName());
+            			olemas.add(i);
+            		}
+            	}  
+            	}
         });
         
         quantityField = new JTextField("1");
