@@ -70,7 +70,9 @@ public class SalesSystemUI extends JFrame {
     addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
-        System.exit(0);
+          //"Could not initialize class ee.ut.math.tvt.salessystem.util.HibernateUtil" kui see lisada
+    	  //domainController.endSession();
+    	  System.exit(0);
       }
     });
   }
