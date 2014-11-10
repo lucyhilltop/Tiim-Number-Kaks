@@ -1,12 +1,11 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
-import javax.persistence.GenerationType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 
 
 /**
@@ -16,18 +15,20 @@ import javax.persistence.Column;
 @Table(name = "Sold_item")
 public class SoldItem implements Cloneable, DisplayableItem {
 
-	//Kas SoldItem ja StockItem id peab sama olema?
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@OneToOne //pole kindel selles
+	@ManyToOne (optional=false)
+	@JoinColumn(name="SOLD_ITEM_ID")
     private StockItem stockItem;
     
     @Column(name = "name")
     private String name;
+    
     @Column(name = "quantity")
     private Integer quantity;
+    
     @Column(name = "price")
     private double price;
     

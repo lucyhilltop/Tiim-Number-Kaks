@@ -1,11 +1,11 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
+
 
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.
@@ -15,7 +15,6 @@ import javax.persistence.Column;
 public class StockItem implements Cloneable, DisplayableItem {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	@Column(name = "name")
@@ -29,6 +28,9 @@ public class StockItem implements Cloneable, DisplayableItem {
     
 	@Column(name = "quantity")
     private int quantity;
+	
+	@OneToMany(mappedBy="stockitem")
+	public SoldItem solditem;
 
     /**
      * Constucts new <code>StockItem</code> with the specified values.
