@@ -182,36 +182,49 @@ public class PurchaseTab {
     		double itemSum = (double) model.getCurrentPurchaseTableModel().getValueAt(i, 4);
     		orderSum += itemSum;
     	}
+    	if(orderSum==0.0) {
+    		return;
+    	}
     	
     	//Confirm the sum
     	JOptionPane.showConfirmDialog(
     		    frame,
-    		    "The sum of the current order is "+orderSum+" EUR","Order sum",JOptionPane.YES_NO_OPTION);
+    		    "The sum of the current order is "+orderSum+" EUR","Order sum",JOptionPane.CLOSED_OPTION);
     	
     	//Insert the amount paid by the customer
-    	String inputValue = JOptionPane.showInputDialog("Insert the amount of money paid.");
-    	double change = Double.parseDouble(inputValue) - orderSum;
-    	
-    	if (change < 0) {
+    	String inputValue = JOptionPane.showInputDialog("Enter the amount of money");
+    	if (inputValue == null) {
+    		return;
+    	}
+    	if (inputValue.length()==0) {
     		JOptionPane.showMessageDialog(
     				frame, 
-    				"The amount of change can't be negative");
-    		
+    				"Amount of money can't be empty.");
     	}
-    	
     	else {
-    	//Show the order sum and change, final confirmation
-    	int reply = JOptionPane.showConfirmDialog(
-    			frame,
-    			"The sum of the current order is "+orderSum+" EUR. Change amount is "+change+" EUR.","Confirmation",JOptionPane.YES_NO_OPTION);
-    	if (reply == JOptionPane.YES_OPTION) {
-    		endSale();
-    		List<SoldItem> korv = (model.getCurrentPurchaseTableModel().getTableRows());
-    		model.getCurrentPurchaseTableModel().clear();
-    		log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-    		domainController.submitCurrentPurchase(korv);
-    	}
-    	
+    		double change = Double.parseDouble(inputValue) - orderSum;
+    		if (change < 0) {
+    			JOptionPane.showMessageDialog(
+    					frame, 
+    					"The amount of change can't be negative");
+    			
+    		}
+    		
+    		else {
+    			//Show the order sum and change, final confirmation
+    			int reply = JOptionPane.showConfirmDialog(
+    					frame,
+    					"The sum of the current order is "+orderSum+" EUR. Change amount is "+change+" EUR.","Confirmation",JOptionPane.OK_OPTION);
+    			if (reply == JOptionPane.OK_OPTION) {
+    				endSale();
+    				List<SoldItem> korv = (model.getCurrentPurchaseTableModel().getTableRows());
+    				model.getCurrentPurchaseTableModel().clear();
+    				log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
+    				domainController.submitCurrentPurchase(korv);
+    			}
+    			
+    		}
+    		
     	}
     } catch (VerificationFailedException e1) {
     	log.error(e1.getMessage());
