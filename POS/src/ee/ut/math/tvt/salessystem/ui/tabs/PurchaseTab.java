@@ -178,12 +178,16 @@ public class PurchaseTab {
     	
     	//Sum of the items currently in the shopping cart
     	double orderSum = 0;
+    	int itemcount = 0;
     	for(int i = 0; i < model.getCurrentPurchaseTableModel().getRowCount(); i++) {
     		double itemSum = (double) model.getCurrentPurchaseTableModel().getValueAt(i, 4);
+    		itemcount = (int) model.getCurrentPurchaseTableModel().getValueAt(i, 3);
     		orderSum += itemSum;
     	}
     	if(orderSum==0.0) {
-    		return;
+    		if (itemcount==0) {
+    			return;
+    		}
     	}
     	
     	//Confirm the sum
