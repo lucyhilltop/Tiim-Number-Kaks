@@ -2,6 +2,7 @@ package ee.ut.math.tvt.tiim_number_kaks;
 
 
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
@@ -18,6 +19,7 @@ public class Intro{
 	 
 
 	public static void main(String[] args) {
+		BasicConfigurator.configure();
 
 		final SalesDomainController domainController = new SalesDomainControllerImpl();
 
