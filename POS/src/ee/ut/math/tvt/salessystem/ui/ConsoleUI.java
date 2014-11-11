@@ -84,6 +84,7 @@ public class ConsoleUI {
 		System.out.println("-------------------------");
 		System.out.println("Usage:");
 		System.out.println("h\t\tShow this help");
+		System.out.println("p\t\t Exit");
 		System.out.println("w\t\tShow warehouse contents");
 		System.out.println("c\t\tShow cart contents");
 		System.out
