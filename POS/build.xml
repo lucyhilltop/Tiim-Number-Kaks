@@ -48,18 +48,6 @@
 		    <include name="*.jar"/>
 		 </fileset>
 	</path>
-
-	<path id="test.classpath">
-		<pathelement location="${build.classes.dir}" />
-		<!-- configuration -->
-		<pathelement location="${conf.dir}" />
-		<fileset dir="${lib.dir}">
-			<include name="*.jar" />
-		</fileset>
-		<fileset dir="${lib.hibernate.dir}">
-			<include name="*.jar"/>
-		</fileset>
-	</path>
 	
 	<!-- Targets -->
 	
@@ -93,7 +81,7 @@
 	</target>
 
 	<target name="runc" depends="build" description="Run the application (console)">
-		<java classname="ee.ut.math.tvt.tiim_number_kaks.Intro" classpathref="test.classpath" fork="yes">
+		<java classname="ee.ut.math.tvt.tiim_number_kaks.Intro" classpathref="run.classpath" fork="yes">
 			<arg value="console" />
 		</java>
 	</target>
