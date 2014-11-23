@@ -121,7 +121,8 @@ public class ConsoleUI {
 			    for(StockItem stockItem : cart) {
 			        soldItems.add(new SoldItem(stockItem, stockItem.getQuantity()));
 			    }
-				dc.submitCurrentPurchase(soldItems);
+				dc.submitCurrentPurchase(soldItems, 0);
+				// 0 asemel on vaja summat
 				cart.clear();
 			} catch (VerificationFailedException e) {
 				log.error(e.getMessage());

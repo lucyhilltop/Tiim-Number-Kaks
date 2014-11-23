@@ -5,8 +5,11 @@ import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.ui.model.HistoryTableModel;
+import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
 
 /**
@@ -14,11 +17,20 @@ import ee.ut.math.tvt.salessystem.util.HibernateUtil;
  */
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
-	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
-		// Let's assume we have checked and found out that the buyer is underaged and
-		// cannot buy chupa-chups
-		throw new VerificationFailedException("Underaged!");
-		// XXX - Save purchase
+	HistoryTab ht;
+	HistoryTableModel htm;
+	
+	public void submitCurrentPurchase(List<SoldItem> goods, double orderSum)
+			throws VerificationFailedException {
+		System.out.println("TEEN MIDAGI");
+		String kuupaev = "Kuupaev";
+		String aeg = "Aeg";
+		System.out.println("KUUPAEVAD SATITUD");
+		HistoryItem uus = new HistoryItem(kuupaev,aeg,15.0);
+		System.out.println("UUS LOODUD");
+		htm.addHistory(uus);
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				
