@@ -16,12 +16,12 @@ public class HibernateUtil {
 
 	private static ServiceRegistry serviceRegistry;
 	public static final SessionFactory sessionFactory;
+	private static Session session;
 
 	static {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml
-			Configuration configuration = new Configuration();
-			configuration.configure();
+			Configuration configuration = new Configuration().configure();
 
 			serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -33,8 +33,6 @@ public class HibernateUtil {
 		}
 	}
 
-	private static Session session;
-
 	public static Session currentSession() throws HibernateException {
 		// Open a new Session, if this thread has none yet
 		if (session == null) {
@@ -43,7 +41,7 @@ public class HibernateUtil {
 		return session;
 	}
 
-	public static void closeSession() throws HibernateException {
+	public void closeSession() throws HibernateException {
 		if (session != null)
 			session.close();
 		session = null;

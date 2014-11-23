@@ -21,7 +21,6 @@
 	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
-	<classpathentry kind="lib" path="conf/hibernate.cfg.xml"/>
 	<classpathentry kind="lib" path="etc/log4j.xml"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

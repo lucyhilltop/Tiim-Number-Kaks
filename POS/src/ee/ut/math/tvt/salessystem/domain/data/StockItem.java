@@ -10,28 +10,20 @@ import javax.persistence.OneToMany;
 /**
  * Stock item. Corresponds to the Data Transfer Object design pattern.
  */
-@Entity
-@Table(name = "Stock_item")
 public class StockItem implements Cloneable, DisplayableItem {
 	
-	@Id
     private Long id;
 
-	@Column(name = "name")
+
     private String name;
 
-	@Column(name = "price")
+
     private double price;
 
-	@Column(name = "description")
     private String description;
     
-	@Column(name = "quantity")
     private int quantity;
 	
-	@OneToMany(mappedBy="stockitem")
-	public SoldItem solditem;
-
     /**
      * Constucts new <code>StockItem</code> with the specified values.
      * @param id barcode id

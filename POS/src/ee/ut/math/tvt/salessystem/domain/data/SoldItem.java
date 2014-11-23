@@ -11,25 +11,17 @@ import javax.persistence.JoinColumn;
 /**
  * Already bought StockItem. SoldItem duplicates name and price for preserving history. 
  */
-@Entity
-@Table(name = "Sold_item")
 public class SoldItem implements Cloneable, DisplayableItem {
 
 	
-	@Id
     private Long id;
 	
-	@ManyToOne (optional=false)
-	@JoinColumn(name="SOLD_ITEM_ID")
     private StockItem stockItem;
-    
-    @Column(name = "name")
     private String name;
-    
-    @Column(name = "quantity")
+
     private Integer quantity;
     
-    @Column(name = "price")
+
     private double price;
     
     public SoldItem(StockItem stockItem, int quantity) {
