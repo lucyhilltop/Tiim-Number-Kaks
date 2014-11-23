@@ -41,7 +41,7 @@ public class HistoryTab {
 	    gc.anchor = GridBagConstraints.NORTH;
 	    gc.gridwidth = GridBagConstraints.REMAINDER;
 	    gc.weightx = 1.0d;
-	    gc.weighty = 0d;
+	//    gc.weighty = 0d;
 
 
 	    gc.weighty = 1.0;
@@ -50,7 +50,7 @@ public class HistoryTab {
 	    return panel;
 	  }
 
-	  // table of the wareshouse stock
+	  // table of the warehouse stock
 	  private Component drawStockMainPane() {
 	    JPanel panel = new JPanel();
 

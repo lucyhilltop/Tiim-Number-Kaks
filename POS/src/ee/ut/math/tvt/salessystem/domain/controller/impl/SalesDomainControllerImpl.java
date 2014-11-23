@@ -20,6 +20,11 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	HistoryTab ht;
 	HistoryTableModel htm;
 	
+	public SalesDomainControllerImpl() {
+		super();
+		this.htm = new HistoryTableModel();
+	}
+
 	public void submitCurrentPurchase(List<SoldItem> goods, double orderSum)
 			throws VerificationFailedException {
 		System.out.println("TEEN MIDAGI");
@@ -29,8 +34,6 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		HistoryItem uus = new HistoryItem(kuupaev,aeg,15.0);
 		System.out.println("UUS LOODUD");
 		htm.addHistory(uus);
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				

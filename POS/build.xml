@@ -98,7 +98,7 @@
 		<copy file="${src.dir}/ee/ut/math/tvt/tiim_number_kaks/number.png"
 			todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/" />
 		
-		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="off" optimize ="true"
+		<javac srcdir="${src.dir}" destdir="${build.classes.dir}" debug="true" optimize ="true"
 			encoding="utf-8" compiler="modern"
 			target="1.7" source="1.7" includeantruntime="false">
 			<classpath refid="compile.classpath" />

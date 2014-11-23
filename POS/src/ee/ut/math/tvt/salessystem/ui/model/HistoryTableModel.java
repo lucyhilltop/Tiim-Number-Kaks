@@ -28,9 +28,14 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 		throw new IllegalArgumentException("Column index out of range");
 	}
 	public void addHistory(final HistoryItem item) {
-		rows.add(item);
-		fireTableDataChanged();
+		try {
+			rows.add(item);
+			fireTableDataChanged();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 		
 	}
-	}
+}
 
