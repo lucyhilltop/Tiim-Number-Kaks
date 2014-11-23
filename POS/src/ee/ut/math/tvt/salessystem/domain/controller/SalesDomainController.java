@@ -40,10 +40,10 @@ public interface SalesDomainController {
      * 
      * @param goods
      *            Goods that the buyer has chosen to buy.
+     * @param orderSum 
      * @throws VerificationFailedException
      */
-    public void submitCurrentPurchase(List<SoldItem> goods)
-            throws VerificationFailedException;
+    public void submitCurrentPurchase(List<SoldItem> goods, double orderSum) throws VerificationFailedException;
 
     public void endSession();
     

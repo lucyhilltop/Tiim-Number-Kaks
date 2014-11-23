@@ -39,12 +39,12 @@ public class SalesSystemUI extends JFrame {
    * Constructs sales system GUI.
    * @param domainController Sales domain controller.
    */
-  public SalesSystemUI(SalesDomainController domainController) {
+  public SalesSystemUI(final SalesDomainController domainController) {
     this.domainController = domainController;
     this.model = new SalesSystemModel(domainController);
 
     // Create singleton instances of the tab classes
-    historyTab = new HistoryTab();
+    historyTab = new HistoryTab(model);
     stockTab = new StockTab(model);
     purchaseTab = new PurchaseTab(domainController, model);
 
@@ -71,7 +71,7 @@ public class SalesSystemUI extends JFrame {
       @Override
       public void windowClosing(WindowEvent e) {
           //"Could not initialize class ee.ut.math.tvt.salessystem.util.HibernateUtil" kui see lisada
-    	  //domainController.endSession();
+    	  domainController.endSession();
     	  System.exit(0);
       }
     });
