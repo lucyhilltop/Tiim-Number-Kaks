@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.domain.controller;
 
 import java.util.List;
 
+import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
@@ -40,9 +41,10 @@ public interface SalesDomainController {
      * 
      * @param goods
      *            Goods that the buyer has chosen to buy.
+     * @return 
      * @throws VerificationFailedException
      */
-    public void submitCurrentPurchase(List<SoldItem> goods, double orderSum) throws VerificationFailedException;
+    public HistoryItem submitCurrentPurchase(List<SoldItem> goods, double orderSum) throws VerificationFailedException;
 
     public void endSession();
     

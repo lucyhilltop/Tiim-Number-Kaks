@@ -9,14 +9,14 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(StockTableModel.class);
+	private static final Logger log = Logger.getLogger(HistoryTableModel.class);
 
 	public HistoryTableModel() {
 		super(new String[] {"Date", "Time", "Total"});
 	}
 
 	@Override
-	protected Object getColumnValue(HistoryItem item, int columnIndex) {
+	public Object getColumnValue(HistoryItem item, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
 			return item.getDate();
@@ -30,12 +30,31 @@ public class HistoryTableModel extends SalesSystemTableModel<HistoryItem> {
 	public void addHistory(final HistoryItem item) {
 		try {
 			rows.add(item);
-			fireTableDataChanged();
 		}
 		catch (Exception e) {
 			System.out.println(e);
 		}
+		fireTableDataChanged();
 		
 	}
+	
+	public String toString() {
+		final StringBuffer buffer = new StringBuffer();
+
+		for (int i = 0; i < headers.length; i++)
+			buffer.append(headers[i] + "\t");
+		buffer.append("\n");
+
+		for (final HistoryItem historyItem : rows) {
+			buffer.append(historyItem.getDate() + "\t");
+			buffer.append(historyItem.getTime() + "\t");
+			buffer.append(historyItem.getTotal() + "\t");
+			buffer.append("\n");
+		}
+
+		return buffer.toString();
+	}
+	
+	
 }
 

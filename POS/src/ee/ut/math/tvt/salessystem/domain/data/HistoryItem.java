@@ -1,6 +1,6 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
-public class HistoryItem implements Cloneable, DisplayableItem {
+public class HistoryItem implements DisplayableItem {
 	private String Date;
 	private String Time;
 	private double total;
@@ -12,14 +12,20 @@ public class HistoryItem implements Cloneable, DisplayableItem {
 		this.Time = time;
 		this.total = total;
 	}
+	
+	public HistoryItem() {
+    }
 
 
 
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
-	}
+	public Object getColumn(int columnIndex) {
+        switch(columnIndex) {
+            case 0: return Date;
+            case 1: return Time;
+            case 2: return total;
+            default: throw new RuntimeException("invalid column!");
+        }
+    }
 
 
 
@@ -65,7 +71,11 @@ public class HistoryItem implements Cloneable, DisplayableItem {
 		this.total = total;
 	}
 
-
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public String getName() {
@@ -73,15 +83,6 @@ public class HistoryItem implements Cloneable, DisplayableItem {
 		return null;
 	}
 
-
-
-	@Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 	
 
 }

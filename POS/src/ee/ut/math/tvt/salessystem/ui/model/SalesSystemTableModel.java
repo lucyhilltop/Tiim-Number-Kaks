@@ -80,18 +80,4 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
         rows.clear();
         rows.addAll(data);
     }
-
-	protected Object getColumnValue(HistoryItem item, int columnIndex) {
-		switch (columnIndex) {
-		case 0:
-			return item.getId();
-		case 1:
-			return item.getDate();
-		case 2:
-			return item.getTime();
-		case 3:
-			return item.getTotal();
-		}
-		throw new IllegalArgumentException("Column index out of range");
-	}
 	}

@@ -9,6 +9,7 @@ import ee.ut.math.tvt.salessystem.domain.data.HistoryItem;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.HistoryTableModel;
+import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.tabs.HistoryTab;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
 
@@ -19,21 +20,19 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	
 	HistoryTab ht;
 	HistoryTableModel htm;
+	SalesSystemModel model;
 	
 	public SalesDomainControllerImpl() {
 		super();
 		this.htm = new HistoryTableModel();
 	}
 
-	public void submitCurrentPurchase(List<SoldItem> goods, double orderSum)
+	public HistoryItem submitCurrentPurchase(List<SoldItem> goods, double orderSum)
 			throws VerificationFailedException {
-		System.out.println("TEEN MIDAGI");
 		String kuupaev = "Kuupaev";
 		String aeg = "Aeg";
-		System.out.println("KUUPAEVAD SATITUD");
-		HistoryItem uus = new HistoryItem(kuupaev,aeg,15.0);
-		System.out.println("UUS LOODUD");
-		htm.addHistory(uus);
+		HistoryItem uus = new HistoryItem(kuupaev,aeg,orderSum);
+		return uus;
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				

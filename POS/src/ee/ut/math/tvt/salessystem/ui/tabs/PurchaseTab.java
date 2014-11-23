@@ -224,7 +224,7 @@ public class PurchaseTab {
     				List<SoldItem> korv = (model.getCurrentPurchaseTableModel().getTableRows());
     				model.getCurrentPurchaseTableModel().clear();
     				log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-    				domainController.submitCurrentPurchase(korv,orderSum);
+    				model.getCurrentHistoryTableModel().addHistory(domainController.submitCurrentPurchase(korv,orderSum));
     			}
     			
     		}
