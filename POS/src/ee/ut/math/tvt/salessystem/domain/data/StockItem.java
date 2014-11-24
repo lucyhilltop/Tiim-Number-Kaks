@@ -14,9 +14,7 @@ public class StockItem implements Cloneable, DisplayableItem {
 	
     private Long id;
 
-
     private String name;
-
 
     private double price;
 
@@ -116,6 +114,24 @@ public class StockItem implements Cloneable, DisplayableItem {
         StockItem item =
             new StockItem(getId(), getName(), getDescription(), getPrice(), getQuantity());
         return item;
+    }
+    
+    public boolean equals(Object obj) {
+    	
+    	StockItem st = (StockItem) obj;
+    	if (id != st.getId())
+    		return false;
+    	else if (name != st.getName())
+    		return false;
+    	else if (description != st.getDescription())
+    		return false;
+    	else if (price != st.getPrice())
+    		return false;
+    	else if (quantity != st.getQuantity())
+    		return false;
+    	
+    	
+    	return true;
     }
 		
 }

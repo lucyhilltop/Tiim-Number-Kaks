@@ -22,13 +22,11 @@ public class SoldItemTest {
 	
 	@Test
 	public void testGetSum() {
-		System.out.println(item1.getSum());
 		assertEquals("Summa test",36.0,item1.getSum(),0.00001);
 	}
 	
 	@Test
 	public void testGetSumWithZeroQuantity(){
-		System.out.println(item2.getSum());
 		assertEquals("Kui kogus on null summa test",0,item2.getSum(),0.00001);
 	}
 }

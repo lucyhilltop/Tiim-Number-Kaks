@@ -40,6 +40,7 @@ public class StockTableModelTest {
 	
 	@Ignore
 	public void testHasEnoughInStock(){
+		// How much is enough?
 		
 	}
 	

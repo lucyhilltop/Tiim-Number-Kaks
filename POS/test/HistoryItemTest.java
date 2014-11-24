@@ -17,7 +17,6 @@ public class HistoryItemTest {
 		Time = new String("08:20:00");
 		total = 100.0;
 		item1 = new HistoryItem(Date,Time,total);
-	
 	}
 	
 	@Test

@@ -25,7 +25,7 @@ public class StockItemTest {
 		item1 = new StockItem(id1, nimi, desc, hind, kogus);
 	}
 	
-	@Ignore
+	@Test
 	public void testClone(){
 		assertEquals(item1,item1.clone());
 	}
