@@ -1,0 +1,11 @@
+2014-11-25 00:14:01,315 [main] ERROR - Initial SessionFactory creation failed.
+org.hibernate.AnnotationException: @OneToOne or @ManyToOne on ee.ut.math.tvt.salessystem.domain.data.SoldItem.sale references an unknown entity: java.lang.Object
+	at org.hibernate.cfg.ToOneFkSecondPass.doSecondPass(ToOneFkSecondPass.java:81)
+	at org.hibernate.cfg.AnnotationConfiguration.processEndOfQueue(AnnotationConfiguration.java:456)
+	at org.hibernate.cfg.AnnotationConfiguration.processFkSecondPassInOrder(AnnotationConfiguration.java:438)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:309)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1333)
+	at org.hibernate.cfg.AnnotationConfiguration.buildSessionFactory(AnnotationConfiguration.java:867)
+	at ee.ut.math.tvt.salessystem.util.HibernateUtil.<clinit>(HibernateUtil.java:20)
+	at ee.ut.math.tvt.salessystem.domain.controller.impl.SalesDomainControllerImpl.<init>(SalesDomainControllerImpl.java:27)
+	at ee.ut.math.tvt.salessystem.SalesSystem.main(SalesSystem.java:22)
