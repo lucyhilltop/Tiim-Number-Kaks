@@ -1,5 +1,9 @@
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.StockTableModel;
 
@@ -16,15 +20,24 @@ public class StockTableModelTest {
 	
 	@Before
 	public void SetUp(){
-		
+		id1 = new Long(667);
+		nimi = "Table-item-667";
+		hind = 10.0;
+		kogus = 5;
+		id2 = new Long(668);
+		item1 = new StockItem(id1, nimi,"kirjeldus",hind,kogus);
+		item2 = new StockItem(id2, "Table-item-668", "kirjeldus", 15.0, 4);
+		tabel = new StockTableModel();
+		tabel.addItem(item1);
+		tabel.addItem(item2);
 	}
 	
 	@Test
 	public void testValidateNameUniqueness(){
-		
+		assertEquals(nimi,tabel.getItemByName(nimi));
 	}
 	
-	@Test
+	@Ignore
 	public void testHasEnoughInStock(){
 		
 	}
