@@ -104,6 +104,7 @@
 	<target name="build" description="Build the system">
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.classes.dir}" />
+		<mkdir dir="${build.test.dir}" />
 
 		<copy todir="${build.classes.dir}/ee/ut/math/tvt/tiim_number_kaks/">
 			<fileset dir="${basedir}">
@@ -137,6 +138,18 @@
 				<pathelement path="${build.classes.dir}" />
 			</classpath>
 		</javac>
+	</target>
+	
+	<target name="test" depends="build-tests" description="Run the template application">
+
+		<junit>
+			<classpath refid="test-classpath" />
+
+			<formatter type="brief" usefile="false" />
+			<batchtest>
+				<fileset dir="${build.test.dir}" includes="**/*.class" />
+			</batchtest>
+		</junit>
 	</target>
 
 	<!-- Build internal documentation -->
