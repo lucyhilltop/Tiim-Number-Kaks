@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -29,12 +31,11 @@ public class StockTableModelTest {
 		item2 = new StockItem(id2, "Table-item-668", "kirjeldus", 15.0, 4);
 		tabel = new StockTableModel();
 		tabel.addItem(item1);
-		tabel.addItem(item2);
 	}
 	
 	@Test
 	public void testValidateNameUniqueness(){
-		assertEquals(nimi,tabel.getItemByName(nimi));
+		assertEquals("Kas nimi on tabelis olemas?",item1,tabel.getItemByName(nimi));
 	}
 	
 	@Ignore
@@ -44,11 +45,11 @@ public class StockTableModelTest {
 	
 	@Test
 	public void testGetItemByIdWhenItemExists(){
-		
+		assertEquals("Kui asi on olemas, id järgi otsimine",item1,tabel.getItemById(id1));
 	}
 	
-	@Test
+	@Test (expected = NoSuchElementException.class) 
 	public void testGetItemByIdWhenThrowsException(){
-		
+		assertEquals("Kui id-d pole tabelis", item2, tabel.getItemById(id2));
 	}
 }
