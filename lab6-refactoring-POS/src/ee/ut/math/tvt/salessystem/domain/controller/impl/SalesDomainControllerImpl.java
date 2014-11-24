@@ -7,8 +7,10 @@ import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
+
 import java.util.Date;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -125,8 +127,8 @@ public class SalesDomainControllerImpl implements SalesDomainController {
     }
 
 
-    public Sale getSale(Long id) {
-        return (Sale) session.get(Sale.class, id);
+    public Object getSale(Long id) {
+        return (Object) session.get(Sale.class, id);
     }
 
     @Override

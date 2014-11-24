@@ -220,9 +220,9 @@ public class PurchaseItemPanel extends JPanel {
      */
     public void reset() {
         // Initialize the textfields
-        ((DefaultComboBoxModel)stockItemSelector.getModel()).removeAllElements();
+        ((DefaultComboBoxModel<StockItem>)stockItemSelector.getModel()).removeAllElements();
         for(StockItem stockItem : model.getWarehouseTableModel().getTableRows()) {
-            ((DefaultComboBoxModel)stockItemSelector.getModel()).addElement(stockItem);
+            ((DefaultComboBoxModel<StockItem>)stockItemSelector.getModel()).addElement(stockItem);
         }
         barCodeField.setText("");
         quantityField.setText("1");
