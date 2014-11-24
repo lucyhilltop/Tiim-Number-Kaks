@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ import javax.persistence.OneToMany;
 		@Column(name="quantity")
 		private int quantity;
 	
-		@OneToMany(mappedBy="stockitem")
+		@OneToOne
 		public SoldItem solditem;
 	
     /**

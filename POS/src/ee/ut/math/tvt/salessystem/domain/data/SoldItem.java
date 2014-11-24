@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import javax.persistence.JoinColumn;
 		@Id
 		private Long id;
 	
-		@ManyToOne(optional=false)
+		@OneToOne(optional=false)
 		@JoinColumn(name="SOLD_ITEM_ID")
 		private StockItem stockItem;
 	
