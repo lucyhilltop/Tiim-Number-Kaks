@@ -1,7 +1,7 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -11,18 +11,25 @@ import javax.persistence.JoinColumn;
 /**
  * Already bought StockItem. SoldItem duplicates name and price for preserving history. 
  */
+@Entity
+@Table(name="Sold_Item")
 public class SoldItem implements Cloneable, DisplayableItem {
 
-	
-    private Long id;
-	
-    private StockItem stockItem;
-    private String name;
+	@Id
+	private Long id;
 
-    private Integer quantity;
-    
+	@OneToOne(optional=false)
+	@JoinColumn(name="SOLD_ITEM_ID")
+	private StockItem stockItem;
 
-    private double price;
+	@Column(name="name")
+	private String name;
+
+	@Column(name="quantity")
+	private Integer quantity;
+
+	@Column(name="price")
+	private double price;
     
     public SoldItem(StockItem stockItem, int quantity) {
         this.stockItem = stockItem;

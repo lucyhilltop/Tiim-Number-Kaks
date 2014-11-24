@@ -1,10 +1,21 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+@Entity
+@Table(name="History")
 public class HistoryItem implements DisplayableItem {
+
+	@Column(name="Date")
 	private String Date;
+
+	@Column(name="Time")
 	private String Time;
+
+	@Column(name="Total")
 	private double total;
-	
 	
 	
 	public HistoryItem(String date, String time, double total) {
