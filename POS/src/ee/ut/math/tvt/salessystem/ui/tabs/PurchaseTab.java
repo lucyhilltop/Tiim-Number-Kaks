@@ -41,13 +41,15 @@ public class PurchaseTab {
   private PurchaseItemPanel purchasePane;
 
   private SalesSystemModel model;
+  
+  private HistoryTab ht;
 
 
   public PurchaseTab(SalesDomainController controller,
-      SalesSystemModel model)
-  {
+      SalesSystemModel model, HistoryTab ht){
     this.domainController = controller;
     this.model = model;
+    this.ht = ht;
   }
 
 
@@ -224,6 +226,7 @@ public class PurchaseTab {
     				List<SoldItem> korv = (model.getCurrentPurchaseTableModel().getTableRows());
     				model.getCurrentPurchaseTableModel().clear();
     				log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
+    				ht.ajalugu.add(korv);
     				model.getCurrentHistoryTableModel().addHistory(domainController.submitCurrentPurchase(korv,orderSum));
     			}
     			
