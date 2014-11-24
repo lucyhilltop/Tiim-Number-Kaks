@@ -1,6 +1,9 @@
 package ee.ut.math.tvt.salessystem.domain.controller.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
@@ -29,9 +32,13 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 	public HistoryItem submitCurrentPurchase(List<SoldItem> goods, double orderSum)
 			throws VerificationFailedException {
-		String kuupaev = "Kuupaev";
-		String aeg = "Aeg";
-		HistoryItem uus = new HistoryItem(kuupaev,aeg,orderSum);
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
+		String kuupaev =(dateOnly.format(cal.getTime()));
+		String kell = (timeOnly.format(cal.getTime()));
+
+		HistoryItem uus = new HistoryItem(kuupaev,kell,orderSum);
 		return uus;
 	}
 
