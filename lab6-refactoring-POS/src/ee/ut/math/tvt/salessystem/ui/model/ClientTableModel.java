@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.data.Client;
@@ -13,6 +14,7 @@ public class ClientTableModel extends SalesSystemTableModel<Client> {
 	public ClientTableModel() {
 		super(new String[] { "Id", "First name", "Discount"});
 	}
+	List<Client> clients = new ArrayList<Client>();
 
 	@Override
 	protected Object getColumnValue(Client client, int columnIndex) {
@@ -48,6 +50,6 @@ public class ClientTableModel extends SalesSystemTableModel<Client> {
 	@Override
 	public List<Client> getTableRows() {
 		// TODO Auto-generated method stub
-		return null;
+		return clients;
 	}
 }

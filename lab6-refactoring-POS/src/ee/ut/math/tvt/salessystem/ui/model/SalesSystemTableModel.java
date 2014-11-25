@@ -1,6 +1,5 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,6 +19,7 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
 
     public SalesSystemTableModel(final String[] headers) {
         this.headers = headers;
+        getTableRows();
     }
 
     /**
@@ -60,16 +60,17 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
     public abstract List<T> getTableRows();
 
     public void clear() {
+    	getTableRows().clear();
         fireTableDataChanged();
     }
 
     public void populateWithData(final List<T> data) {
-        getTableRows().clear();
-        getTableRows().addAll(data);
+    	getTableRows().clear();
+    	getTableRows().addAll(data);
     }
     
     public void addRow(T row) {
-        getTableRows().add(row);
+    	getTableRows().add(row);
         fireTableDataChanged();
     }
     
@@ -77,8 +78,5 @@ public abstract class SalesSystemTableModel<T extends DisplayableItem> extends
         return getTableRows().get(index);
     }
     
-    public List<T> getRows() {
-        return getTableRows();
-    }
     
 }

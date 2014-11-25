@@ -36,7 +36,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
 
     @ManyToOne
     @JoinColumn(name = "SALE_ID", nullable = false)
-    private Object sale;
+    private Sale sale;
 
     /** Empty constructors are used by hibernate */
     public SoldItem() {
@@ -93,11 +93,11 @@ public class SoldItem implements Cloneable, DisplayableItem {
         this.stockItem = stockItem;
     }
 
-    public Object getSale() {
+    public Sale getSale() {
         return sale;
     }
 
-    public void setSale(Object sale) {
+    public void setSale(Sale sale) {
         this.sale = sale;
     }
 

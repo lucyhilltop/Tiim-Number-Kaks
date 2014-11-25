@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,6 +15,9 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger log = Logger.getLogger(StockTableModel.class);
+	
+	private List<StockItem> items = new ArrayList<StockItem>();
+	
 
 	public StockTableModel() {
 		super(new String[] {"Id", "Name", "Price", "Quantity"});
@@ -57,7 +61,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	
 	
 	public boolean hasEnoughInStock(StockItem item, int quantity) {
-	    for(StockItem i : this.getTableRows()) {
+	    for(StockItem i : getTableRows()) {
 	        if (i.getId().equals(item.getId())) {
 	            return (i.getQuantity() >= quantity);
 	        }
@@ -98,8 +102,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 
 	@Override
 	public List<StockItem> getTableRows() {
-		// TODO Auto-generated method stub
-		return null;
+		return items;
 	}
 
 }

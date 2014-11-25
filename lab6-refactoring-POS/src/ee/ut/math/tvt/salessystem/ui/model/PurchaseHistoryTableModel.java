@@ -2,6 +2,7 @@ package ee.ut.math.tvt.salessystem.ui.model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import ee.ut.math.tvt.salessystem.domain.data.Sale;
@@ -17,6 +18,8 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<Sale> {
 	public PurchaseHistoryTableModel() {
 		super(new String[] { "Id", "Time", "Sum", "Client" });
 	}
+	
+	List<Sale> sales = new ArrayList<Sale>();
 
 	@Override
 	protected Object getColumnValue(Sale sale, int columnIndex) {
@@ -54,6 +57,6 @@ public class PurchaseHistoryTableModel extends SalesSystemTableModel<Sale> {
 	@Override
 	public List<Sale> getTableRows() {
 		// TODO Auto-generated method stub
-		return null;
+		return sales;
 	}
 }

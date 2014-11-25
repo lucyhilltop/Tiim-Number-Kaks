@@ -19,6 +19,8 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
 
 	private SalesSystemModel model;
+	
+	List<SoldItem> solds = new ArrayList<SoldItem>();
 
     public PurchaseInfoTableModel() {
         super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
@@ -137,14 +139,14 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
      * (Used by the history details table in the HistoryTab).
      */
     public void showSale(Sale sale) {
-        getTableRows().add((SoldItem) sale.getSoldItems());
+    	this.solds = new ArrayList<SoldItem>(sale.getSoldItems());
         fireTableDataChanged();
     }
 
 	@Override
 	public List<SoldItem> getTableRows() {
 		// TODO Auto-generated method stub
-		return null;
+		return solds;
 	}
 
 }
